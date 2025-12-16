@@ -42,7 +42,6 @@ X_train.isna().sum().sort_values(ascending=False)
 df_analise = X_train.copy()
 df_analise[target] = y_train
 sumario = df_analise.groupby(by=target).agg(['mean', 'median']).T
-sumario
 
 # %%
 sumario['diff_abs'] = sumario[0] - sumario[1]
@@ -68,7 +67,6 @@ feature_importances[feature_importances['acum.'] < 0.96]
 # %%
 best_features = (feature_importances[feature_importances['acum.'] < 0.96]['index']
                  .tolist())
-best_features
 
 # %%
 from feature_engine import discretisation
@@ -83,7 +81,6 @@ tree_discretization.fit(X_train[best_features], y_train)
 # %%
 
 X_train_transform = tree_discretization.transform(X_train[best_features])
-X_train_transform
 
 # %%
 
